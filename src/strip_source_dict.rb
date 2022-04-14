@@ -20,7 +20,7 @@ def fetch(uri_str, limit = 10)
 
       full_array.each do |hash|
         hash.each do |key, value|
-            if key.length == 5
+            if key.length == 5 && !(key.to_s.include?(" ")) && !(key.to_s.include?("-"))
                 all_five_letter_words.push(key.to_s)
             end
         end
@@ -37,4 +37,4 @@ def fetch(uri_str, limit = 10)
     end
 end
 
-puts fetch(uri)
+print fetch(uri).length
