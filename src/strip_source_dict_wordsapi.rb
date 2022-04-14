@@ -16,7 +16,7 @@ def fetch(uri_str, limit = 10)
 
     request = Net::HTTP::Get.new(uri_str)
     request["X-RapidAPI-Host"] = 'wordsapiv1.p.rapidapi.com'
-    request["X-RapidAPI-Key"] = '(TO ADD)'
+    request["X-RapidAPI-Key"] = '(**TO ADD**)'
 
     response = http.request(request)
   
@@ -46,11 +46,20 @@ end
 all_five_letter_words = []
 
 page_counter = 1
-while !(fetch_page_results(page_counter).empty?) do
+#while !(fetch_page_results(page_counter).empty?) do
+while page_counter < 10 do
     puts "Processing page #{page_counter}..."
     fetch_page_results(page_counter).each do |word|
-        all_five_letter_words.push(word)
+
+        # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
+        special = "?<>',?[]}{=-)(*&^%$#`~{}"
+        special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+
+        if !(/\d/.match(word)) && !(word =~ special_char_regex) && !(word.include?(" "))
+            all_five_letter_words.push(word)
+        end
     end
     page_counter += 1
 end
 
+print all_five_letter_words
