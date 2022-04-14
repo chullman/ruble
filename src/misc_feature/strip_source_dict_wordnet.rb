@@ -39,7 +39,7 @@ require 'net/http'
 require 'json'
 
 # https://ruby-doc.org/stdlib-2.2.3/libdoc/net/http/rdoc/Net/HTTP.html
-uri = URI('https://raw.githubusercontent.com/chullman/ruble/master/src/all_words_from_wordnet_2_1.txt')
+uri = URI('https://raw.githubusercontent.com/chullman/ruble/master/src/misc_feature/all_words_from_wordnet_2_1.txt')
 
 $response_2xx_success = false
 
@@ -90,6 +90,6 @@ end
 
 response_body = fetch_from_http(uri)
 if $response_2xx_success == true
-    File.open("all_five_letter_words_wordnet_2_1.json", "w") { |f| f.write strip_to_custom_json(response_body) }
+    File.open("strip_source_dict_wordnet.json", "w") { |f| f.write strip_to_custom_json(response_body) }
 end
 
