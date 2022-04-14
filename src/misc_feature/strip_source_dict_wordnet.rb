@@ -39,7 +39,7 @@ require 'net/http'
 require 'json'
 
 # https://ruby-doc.org/stdlib-2.2.3/libdoc/net/http/rdoc/Net/HTTP.html
-uri = URI('https://raw.githubusercontent.com/chullman/ruble/master/src/misc_feature/all_words_from_wordnet_2_1.txt')
+uri = URI('https://raw.githubusercontent.com/chullman/ruble/e79e3d6ae63632ee63436fb47aa5b8651aff6c1a/src/misc_feature/all_words_from_wordnet_2_1.txt')
 
 $response_2xx_success = false
 
@@ -84,6 +84,7 @@ def strip_to_custom_json(body)
 
     json_formatted += "]"
     json_formatted = JSON.parse(json_formatted)
+    json_formatted.uniq!
     json_formatted.sort!
     json_formatted
 end
