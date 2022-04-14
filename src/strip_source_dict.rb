@@ -20,8 +20,15 @@ def fetch(uri_str, limit = 10)
 
       full_array.each do |hash|
         hash.each do |key, value|
-            if key.length == 5 && !(key.to_s.include?(" ")) && !(key.to_s.include?("-"))
-                all_five_letter_words.push(key.to_s)
+
+            # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
+            special = "?<>',?[]}{=-)(*&^%$#`~{}"
+            special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+
+            key = key.to_s
+
+            if key.length == 5 && !(key.include?(" ")) && !(/\d/.match(key)) && !(key =~ special_char_regex)
+                all_five_letter_words.push(key)
             end
         end
       end
@@ -37,4 +44,4 @@ def fetch(uri_str, limit = 10)
     end
 end
 
-print fetch(uri).length
+print fetch(uri)
