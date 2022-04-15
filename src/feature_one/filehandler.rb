@@ -15,14 +15,14 @@ class FileHandler
   
         puts "ERROR: No such file \"#{@file_path}\" found"
         puts "ERROR @: #{e.backtrace[1]}"
-        try_close_file(file)
+        try_file_close(file)
   
       rescue Errno::EACCES => e
   
         puts "ERROR: Permission denied in opening the file #{@file_path}"
         puts "Ensure that everyone has read access to the file by running - chmod 444 #{@file_path}"
         puts "ERROR @: #{e.backtrace[1]}"
-        try_close_file(file)       
+        try_file_close(file)       
        
       end
     end
@@ -31,7 +31,7 @@ class FileHandler
   
       file_contents = file.read
   
-      try_close_file(file)
+      try_file_close(file)
   
       file_contents.chomp!
   
@@ -45,7 +45,7 @@ class FileHandler
   
     private 
     
-    def try_close_file(file)
+    def try_file_close(file)
       file.close unless file.nil?
     end
   
