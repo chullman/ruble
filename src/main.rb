@@ -1,5 +1,7 @@
 require_relative './feature_one/filehandler'
 require_relative './feature_one/jsonhandler'
+require_relative './feature_one/is_valid_input'
+require_relative './nilobjecterror'
 
 file_handler = FileHandler.new
 
@@ -14,33 +16,20 @@ json_results = json_handler.try_parse_json(output_string)
 
 # puts json_results unless json_results.nil?
 
-def is_valid_input?(input, input_length_restriction, all_dict_words)
 
-    input = input.to_s.strip.downcase
-
-    if input.length != input_length_restriction
-        return false
-    end
-
-    # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
-    special = "?<>',?[]}{=-)(*&^%$#`~{}_\""
-    special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
-
-    if input.include?(" ") || /\d/.match(input) || input =~ special_char_regex
-        return false
-    end
-
-    if !(all_dict_words.include?(input))
-        puts "entered"
-        return false
-    end
-
-    return true
+def get_user_word
+    print ": "
+    return gets.chomp
 end
 
-print ": "
-input = gets.chomp
-
-if is_valid_input?(input, 5, json_results)
-    
+if json_results.nil?
+    raise NilOjbectError.new("json_results")
 end
+
+word_input = get_user_word
+until is_valid_input?(word_input, 5, json_results)
+    puts "Sorry, that is not a valid 5 letter word, please try again:"
+    word_input = get_user_word
+end
+
+puts word_input + " IS VALID"
