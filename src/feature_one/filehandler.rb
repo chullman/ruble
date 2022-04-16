@@ -16,13 +16,15 @@ class FileHandler
         puts "ERROR: No such file \"#{@file_path}\" found"
         puts "ERROR @: #{e.backtrace[1]}"
         try_file_close(file)
+        return nil
   
       rescue Errno::EACCES => e
   
         puts "ERROR: Permission denied in opening the file #{@file_path}"
         puts "Ensure that everyone has read access to the file by running - chmod 444 #{@file_path}"
         puts "ERROR @: #{e.backtrace[1]}"
-        try_file_close(file)       
+        try_file_close(file)
+        return nil       
        
       end
     end

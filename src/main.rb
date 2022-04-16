@@ -7,14 +7,20 @@ file_handler = FileHandler.new
 
 file = file_handler.try_file_open("./misc_feature/strip_source_dict_wordnet.json")
 
-output_string = file_handler.try_file_read(file) unless file.nil?
+if file.nil?
+    raise NilOjbectError.new("file")
+end
+
+output_string = file_handler.try_file_read(file)
 
 
 json_handler = JSONHandler.new
 
 json_results = json_handler.try_parse_json(output_string)
 
-# puts json_results unless json_results.nil?
+if json_results.nil?
+    raise NilOjbectError.new("json_results")
+end
 
 
 def get_user_word
@@ -22,9 +28,6 @@ def get_user_word
     return gets.chomp
 end
 
-if json_results.nil?
-    raise NilOjbectError.new("json_results")
-end
 
 word_input = get_user_word
 until is_valid_input?(word_input, 5, json_results)
@@ -32,4 +35,4 @@ until is_valid_input?(word_input, 5, json_results)
     word_input = get_user_word
 end
 
-puts word_input + " IS VALID"
+puts word_input.strip.upcase + " is valid"
