@@ -1,6 +1,7 @@
 require_relative './feature_one/filehandler'
 require_relative './feature_one/jsonhandler'
 require_relative './feature_one/is_valid_input'
+require_relative './feature_one/fetch_random_wordle'
 require_relative './nilobjecterror'
 
 file_handler = FileHandler.new
@@ -21,7 +22,6 @@ json_results = json_handler.try_parse_json(output_string)
 if json_results.nil?
     raise NilOjbectError.new("json_results")
 end
-
 
 def get_user_word
     print ": "
