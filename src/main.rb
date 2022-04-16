@@ -2,6 +2,10 @@ require_relative './feature_one/filehandler'
 require_relative './feature_one/jsonhandler'
 require_relative './feature_one/is_valid_input'
 require_relative './feature_one/fetch_random_wordle'
+
+require_relative './feature_two/string_patches'
+using ColorizeStringPatches
+
 require_relative './nilobjecterror'
 
 file_handler = FileHandler.new
@@ -36,3 +40,5 @@ until is_valid_input?(word_input, 5, json_results)
 end
 
 puts word_input.strip.upcase + " is valid"
+
+puts "this will be red".color(:red)
