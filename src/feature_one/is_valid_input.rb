@@ -6,13 +6,14 @@ def is_valid_input?(input, input_length_restriction, all_dict_words)
         return false
     end
 
-    # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
-    special = "?<>',?[]}{=-)(*&^%$#`~{}_\""
-    special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+    valid_alphabet_chars = ('a'..'z').to_a
 
-    if input.include?(" ") || /\d/.match(input) || input =~ special_char_regex
-        return false
+    input.each_char do |input_char|
+        if !(valid_alphabet_chars.include?(input_char))
+            return false
+        end
     end
+
 
     if !(all_dict_words.include?(input))
         return false
