@@ -69,7 +69,7 @@ def strip_to_custom_json(body)
         words_in_a_line = line.split(" ")
 
         # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
-        special = "?<>',?[]}{=-)(*&^%$#`~{}_"
+        special = "?<>',?[]}{=-)(*&^%$#`~{}_\""
         special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 
         words_in_a_line[0] = words_in_a_line[0].to_s

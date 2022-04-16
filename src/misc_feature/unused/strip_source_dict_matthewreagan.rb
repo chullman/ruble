@@ -22,7 +22,7 @@ def fetch(uri_str, limit = 10)
         hash.each do |key, value|
 
             # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
-            special = "?<>',?[]}{=-)(*&^%$#`~{}_"
+            special = "?<>',?[]}{=-)(*&^%$#`~{}_\""
             special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 
             key = key.to_s

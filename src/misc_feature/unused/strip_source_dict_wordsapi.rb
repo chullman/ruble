@@ -51,7 +51,7 @@ while !(fetch_page_results(page_counter).empty?) do
     fetch_page_results(page_counter).each do |word|
 
         # explanation of this regex and the gsub method: https://stackoverflow.com/a/6344630
-        special = "?<>',?[]}{=-)(*&^%$#`~{}_"
+        special = "?<>',?[]}{=-)(*&^%$#`~{}_\""
         special_char_regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 
         if !(/\d/.match(word)) && !(word =~ special_char_regex) && !(word.include?(" "))
