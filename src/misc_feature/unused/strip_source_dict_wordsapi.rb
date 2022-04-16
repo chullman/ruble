@@ -46,8 +46,7 @@ end
 all_five_letter_words = []
 
 page_counter = 1
-#while !(fetch_page_results(page_counter).empty?) do
-while page_counter < 10 do
+while !(fetch_page_results(page_counter).empty?) do
     puts "Processing page #{page_counter}..."
     fetch_page_results(page_counter).each do |word|
 
