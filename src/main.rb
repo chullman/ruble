@@ -35,6 +35,7 @@ def get_user_word
     return gets.chomp
 end
 
+wordle = "joint"
 puts "The wordle is: #{wordle}"
 
 
@@ -50,4 +51,7 @@ puts "this will be red".color(:red)
 
 answer_processor = AnswerProcessor.new(word_input, wordle)
 
-puts answer_processor.check_for_greens
+answer_processor.check_for_greens
+answer_processor.check_for_oranges
+
+puts answer_processor.answer_results_hash
