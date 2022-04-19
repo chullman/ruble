@@ -4,6 +4,7 @@ require_relative './feature_one/is_valid_input'
 require_relative './feature_one/fetch_random_wordle'
 
 require_relative './feature_two/string_patches'
+require_relative './feature_two/answerprocessor'
 using ColorizeStringPatches
 
 require_relative './nilobjecterror'
@@ -27,10 +28,14 @@ if json_results.nil?
     raise NilOjbectError.new("json_results")
 end
 
+wordle = fetch_random_wordle(json_results)
+
 def get_user_word
     print ": "
     return gets.chomp
 end
+
+puts "The wordle is: #{wordle}"
 
 
 word_input = get_user_word
@@ -42,3 +47,7 @@ end
 puts word_input.strip.upcase + " is valid"
 
 puts "this will be red".color(:red)
+
+answer_processor = AnswerProcessor.new(word_input, wordle)
+
+puts answer_processor.check_for_greens
