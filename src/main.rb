@@ -35,7 +35,6 @@ def get_user_word
     return gets.chomp
 end
 
-wordle = "joint"
 puts "The wordle is: #{wordle}"
 
 
