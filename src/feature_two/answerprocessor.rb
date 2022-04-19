@@ -14,8 +14,6 @@ class AnswerProcessor
                 @answer_results_hash[key] = [value[0], :green]
             end
         end
-
-        return @answer_results_hash
     end
 
     def check_for_oranges
