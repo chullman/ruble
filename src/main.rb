@@ -93,7 +93,7 @@ def play(wordle, json_results, answers_storage)
             input = get_user_confirmation
             if confirm_giving_up?(input)
                 game_ending = true
-                game_over_you_lost
+                game_over_you_lost(wordle)
             end
         else
             if !(is_valid_input?(input, 5, json_results))
