@@ -6,6 +6,9 @@ require_relative './feature_one/fetch_random_wordle'
 require_relative './feature_two/string_patches'
 require_relative './feature_two/answerprocessor'
 require_relative './feature_two/answersstorage'
+require_relative './feature_two/is_giving_up'
+require_relative './feature_two/is_game_won'
+
 using ColorizeStringPatches
 
 require_relative './nilobjecterror'
@@ -31,31 +34,95 @@ end
 
 wordle = fetch_random_wordle(json_results)
 
-def get_user_word
-    print ": "
-    return gets.chomp
-end
 
 puts "The wordle is: #{wordle}"
 
-answers_storage = AnswersStorage.new
+answers_storage = AnswersStorage.new(6)
 
-
-word_input = get_user_word
-until is_valid_input?(word_input, 5, json_results)
-    puts "Sorry, that is not a valid 5 letter word, please try again:"
-    word_input = get_user_word
+def get_user_answer(attempt_no)
+    print "Attempt ##{attempt_no}: "
+    return gets.chomp
 end
 
-puts word_input.strip.upcase + " is valid"
+def get_user_confirmation
+    print "(y)es or (n)o ? : "
+    return gets.chomp
+end
 
-puts "this will be red".color(:red)
+def game_over_you_lost(wordle)
+    puts "GAME OVER YOU LOST"
+    puts "The Wordle was #{wordle.upcase}"
+end
 
-answer_processor = AnswerProcessor.new(word_input, wordle)
+def game_over_you_won(wordle)
+    puts "YOU WON!! :)"
+    puts "The Wordle was #{wordle.upcase}"
+end
 
-answer_processor.check_for_greens
-answer_processor.check_for_oranges
 
-puts answer_processor.answer_results_hash
+def process_valid_answer(input, wordle, answers_storage)
+    answer_processor = AnswerProcessor.new(input, wordle)
 
-answers_storage.add(answer_processor.answer_results_hash)
+    answer_processor.check_for_greens
+    answer_processor.check_for_oranges
+
+    # puts answer_processor.answer_results_hash
+
+    answers_storage.add(answer_processor.answer_results_hash)
+
+    answers_storage.answers.each do |answer|
+        puts "#{answer}"
+    end
+
+    # attempt_counter += 1
+
+    # input = get_user_answer(attempt_counter)
+end
+
+
+def play(wordle, json_results, answers_storage)
+
+    game_ending = false
+
+    until game_ending
+
+        input = get_user_answer(answers_storage.answers.length+1)
+
+        if is_giving_up?(input)
+            puts "Are you sure you want to give up? - Enter: (y)es / (n)o"
+            input = get_user_confirmation
+            if confirm_giving_up?(input)
+                game_ending = true
+                game_over_you_lost
+            end
+        else
+            if !(is_valid_input?(input, 5, json_results))
+                puts "Sorry, that is not a valid 5 letter word, please try again:"
+            else
+                process_valid_answer(input, wordle, answers_storage)
+
+                if is_game_won?(answers_storage.answers[-1])
+                    game_ending = true
+                    game_over_you_won(wordle)
+                elsif answers_storage.answers.length == answers_storage.limit
+                    game_ending = true
+                    game_over_you_lost(wordle)
+                end
+            end
+            
+        end
+
+    end
+
+    return nil
+
+end
+
+play(wordle, json_results, answers_storage)
+
+
+
+
+
+
+

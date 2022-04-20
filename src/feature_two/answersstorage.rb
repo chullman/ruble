@@ -1,6 +1,6 @@
 class AnswersStorage
 
-    attr_reader :answers
+    attr_reader :answers, :limit
 
     def initialize(limit = 6)
         @answers = []
@@ -15,4 +15,5 @@ class AnswersStorage
             puts "To change this limit, pass in a new integer value in AnswersStorage.new(value)"
         end
     end
+
 end
