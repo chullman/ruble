@@ -5,6 +5,7 @@ require_relative './feature_one/fetch_random_wordle'
 
 require_relative './feature_two/string_patches'
 require_relative './feature_two/answerprocessor'
+require_relative './feature_two/answersstorage'
 using ColorizeStringPatches
 
 require_relative './nilobjecterror'
@@ -37,6 +38,8 @@ end
 
 puts "The wordle is: #{wordle}"
 
+answers_storage = AnswersStorage.new
+
 
 word_input = get_user_word
 until is_valid_input?(word_input, 5, json_results)
@@ -54,3 +57,5 @@ answer_processor.check_for_greens
 answer_processor.check_for_oranges
 
 puts answer_processor.answer_results_hash
+
+answers_storage.add(answer_processor.answer_results_hash)
