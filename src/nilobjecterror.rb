@@ -1,6 +1,6 @@
 class NilOjbectError < StandardError
     def initialize(message)
-        super("ERROR:\"#{message}\" is a nil object")
+        super("\nERROR:\"#{message}\" is a nil object\n")
     end
 end
 

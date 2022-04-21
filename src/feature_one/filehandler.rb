@@ -13,16 +13,20 @@ class FileHandler
   
       rescue Errno::ENOENT => e
   
+        puts "\n"
         puts "ERROR: No such file \"#{@file_path}\" found"
         puts "ERROR @: #{e.backtrace[1]}"
+        puts "\n"
         try_file_close(file)
         return nil
   
       rescue Errno::EACCES => e
   
+        puts "\n"
         puts "ERROR: Permission denied in opening the file #{@file_path}"
-        puts "Ensure that everyone has read access to the file by running - chmod 444 #{@file_path}"
+        puts "Ensure that everyone has read access to the file by running - sudo chmod +r #{@file_path}"
         puts "ERROR @: #{e.backtrace[1]}"
+        puts "\n"
         try_file_close(file)
         return nil       
        
@@ -38,7 +42,7 @@ class FileHandler
       file_contents.chomp!
   
       if file_contents.empty?
-        raise ArgumentError, "ERROR: The file \"#{@file_path}\" is empty"
+        raise ArgumentError, "\nERROR: The file \"#{@file_path}\" is empty\n"
       end
   
       return file_contents
