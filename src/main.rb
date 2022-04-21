@@ -140,6 +140,7 @@ def game(json_results)
     input = get_user_confirmation
     if confirmed?(input)
         game(json_results)
+        # I always return from the method immediately after using recursion to prevent any further unexpected code execution
         return nil
     else
         puts "Exiting..."
