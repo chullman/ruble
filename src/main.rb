@@ -12,6 +12,7 @@ require_relative './feature_two/is_game_won'
 using ColorizeStringPatches
 
 require_relative './feature_three/display_results'
+require_relative './feature_three/try_generate_pdf'
 
 
 require_relative './nilobjecterror'
@@ -124,9 +125,9 @@ def play(wordle, json_results, answers_storage)
 
 end
 
-# require 'colorize'
-# puts String.color_samples
 play(wordle, json_results, answers_storage)
+
+try_generate_pdf(wordle, answers_storage)
 
 
 
