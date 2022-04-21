@@ -127,7 +127,7 @@ end
 
 play(wordle, json_results, answers_storage)
 
-try_generate_pdf(wordle, answers_storage)
+try_generate_pdf(wordle, answers_storage, "hello.pdf")
 
 
 
