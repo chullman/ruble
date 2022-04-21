@@ -4,6 +4,8 @@ require 'date'
 def try_generate_pdf(wordle, answers_storage, file_path)
 
         # 'Prawn' (PDF generation) documentation source: https://prawnpdf.org/manual.pdf (viewed 21/04/2022)
+
+        puts "#{answers_storage.answers[-1]}"
         
         pdf = Prawn::Document.new
         pdf.font_size(20) { pdf.text "Your Ruble results @ #{DateTime.now.strftime "%d/%m/%Y %H:%M"}" }
@@ -14,9 +16,9 @@ def try_generate_pdf(wordle, answers_storage, file_path)
         pdf.font_size(20) { pdf.text "The Wordle was: \"#{wordle.to_s.strip.upcase}\"" }
         pdf.move_down 10
 
-        green_fill_color = "00FF00"
+        green_fill_color = "33CC00"
         orange_fill_color = "FFC300"
-        grey_fill_color = "C8C8C8"
+        grey_fill_color = "CCCCCC"
         black_fill_color = "000000"
 
         box_width = 310
@@ -60,6 +62,7 @@ def try_generate_pdf(wordle, answers_storage, file_path)
 
         puts "ERROR: Permission denied in writing the file #{file_path}"
         puts "Ensure that there is WRITE access on the directory containing #{file_path} - try running: sudo chmod +w /<<directory path>>"
+        puts "AND ensure that the file isn't already opened elsewhere"
         puts "ERROR @: #{e.backtrace[-2]}"
 
     else
