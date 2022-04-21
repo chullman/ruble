@@ -36,12 +36,6 @@ if json_results.nil?
     raise NilOjbectError.new("json_results")
 end
 
-wordle = fetch_random_wordle(json_results)
-
-
-puts "The wordle is: #{wordle}"
-
-answers_storage = AnswersStorage.new(6)
 
 def get_user_answer(attempt_no)
     print "Attempt ##{attempt_no}: "
@@ -67,20 +61,13 @@ end
 def process_valid_answer(input, wordle, answers_storage)
     answer_processor = AnswerProcessor.new(input, wordle)
 
+    # check_for_greens must be called before calling check_for_oranges for the AnswerProcessor logic to work
     answer_processor.check_for_greens
     answer_processor.check_for_oranges
 
-    # puts answer_processor.answer_results_hash
 
     answers_storage.add(answer_processor.answer_results_hash)
 
-    # answers_storage.answers.each do |answer|
-    #     puts "#{answer}"
-    # end
-
-    # attempt_counter += 1
-
-    # input = get_user_answer(attempt_counter)
 end
 
 
@@ -95,7 +82,7 @@ def play(wordle, json_results, answers_storage)
         if is_giving_up?(input)
             puts "Are you sure you want to give up? - Enter: (y)es / (n)o"
             input = get_user_confirmation
-            if confirm_giving_up?(input)
+            if confirmed?(input)
                 game_ending = true
                 game_over_you_lost(wordle)
                 display_results(answers_storage)
@@ -125,13 +112,40 @@ def play(wordle, json_results, answers_storage)
 
 end
 
-play(wordle, json_results, answers_storage)
+def game(json_results)
 
-if !(answers_storage.answers.empty?)
-    try_generate_pdf(wordle, answers_storage, "my_ruble_results.pdf") 
+    puts "- A Ruby Wordle game replica by Christopher Hullman"
+    puts "If at any point you would like to give up? Enter 'give up' or 'quit' or 'exit' (without the quotes)."
+
+    wordle = fetch_random_wordle(json_results)
+
+    puts "The wordle is: #{wordle}"
+
+    answers_storage = AnswersStorage.new(6)
+
+    play(wordle, json_results, answers_storage)
+
+    if !(answers_storage.answers.empty?)
+        puts "Would you like to save your game result to a PDF file? - Enter: (y)es / (n)o"
+        input = get_user_confirmation
+        if confirmed?(input)
+            try_generate_pdf(wordle, answers_storage, "my_ruble_results.pdf") 
+        end
+    end
+
+    puts "THANK YOU FOR PLAYING RUBLE!"
+
+    puts "Would you like to play again? - Enter: (y)es / (n)o"
+    input = get_user_confirmation
+    if confirmed?(input)
+        game(json_results)
+    end
+
+    return nil
+
 end
 
-
+game(json_results)
 
 
 

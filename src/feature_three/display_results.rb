@@ -27,4 +27,5 @@ def display_results(answers_storage)
 
     end
 
+    return nil
 end

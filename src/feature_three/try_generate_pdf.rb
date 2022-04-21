@@ -5,8 +5,6 @@ def try_generate_pdf(wordle, answers_storage, file_path)
 
         # 'Prawn' (PDF generation) documentation source: https://prawnpdf.org/manual.pdf (viewed 21/04/2022)
 
-        puts "#{answers_storage.answers[-1]}"
-        
         pdf = Prawn::Document.new
         pdf.font_size(20) { pdf.text "Your Ruble results @ #{DateTime.now.strftime "%d/%m/%Y %H:%M"}" }
 
@@ -66,9 +64,9 @@ def try_generate_pdf(wordle, answers_storage, file_path)
         puts "ERROR @: #{e.backtrace[-2]}"
 
     else
-
         puts "Your Ruble results have been written to PDF file: #{file_path}"
-
+    ensure
+        return nil
     end
 
 end

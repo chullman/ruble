@@ -7,7 +7,7 @@ def is_giving_up?(input)
     return false
 end
 
-def confirm_giving_up?(input)
+def confirmed?(input)
     input = input.to_s.strip.downcase
     
     if input == "y" || input == "yes"
