@@ -26,9 +26,6 @@ class AnswerProcessor
             end
         end
 
-        print @wordle_letters
-        print "\n"
-
         @answer_results_hash.each do |key, value|
             if value[1] != :green
                 @wordle_letters.each_with_index do |wordle_letter, wordle_index|
