@@ -49,12 +49,13 @@ end
 
 def game_over_you_lost(wordle)
     puts "GAME OVER YOU LOST"
-    puts "The Wordle was #{wordle.upcase}"
+    puts "The Wordle was: #{wordle.to_s.upcase.color(:green)}"
 end
 
-def game_over_you_won(wordle)
-    puts "YOU WON!! :)"
-    puts "The Wordle was #{wordle.upcase}"
+def game_over_you_won(wordle, score, limit)
+    puts "YOU WON!! :)".color(:green)
+    puts "Your score is: #{score.to_s}/#{limit.to_s}".color(:green)
+    puts "The Wordle was: #{wordle.to_s.upcase.color(:green)}"
 end
 
 
@@ -97,7 +98,7 @@ def play(wordle, json_results, answers_storage)
 
                 if is_game_won?(answers_storage.answers[-1])
                     game_ending = true
-                    game_over_you_won(wordle)                
+                    game_over_you_won(wordle, answers_storage.answers.length, 6)                
                 elsif answers_storage.answers.length == answers_storage.limit
                     game_ending = true
                     game_over_you_lost(wordle)
@@ -139,6 +140,9 @@ def game(json_results)
     input = get_user_confirmation
     if confirmed?(input)
         game(json_results)
+        return nil
+    else
+        puts "Exiting..."
     end
 
     return nil
