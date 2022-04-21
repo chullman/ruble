@@ -11,6 +11,9 @@ require_relative './feature_two/is_game_won'
 
 using ColorizeStringPatches
 
+require_relative './feature_three/display_results'
+
+
 require_relative './nilobjecterror'
 
 file_handler = FileHandler.new
@@ -70,9 +73,9 @@ def process_valid_answer(input, wordle, answers_storage)
 
     answers_storage.add(answer_processor.answer_results_hash)
 
-    answers_storage.answers.each do |answer|
-        puts "#{answer}"
-    end
+    # answers_storage.answers.each do |answer|
+    #     puts "#{answer}"
+    # end
 
     # attempt_counter += 1
 
@@ -94,6 +97,7 @@ def play(wordle, json_results, answers_storage)
             if confirm_giving_up?(input)
                 game_ending = true
                 game_over_you_lost(wordle)
+                display_results(answers_storage)
             end
         else
             if !(is_valid_input?(input, 5, json_results))
@@ -101,9 +105,11 @@ def play(wordle, json_results, answers_storage)
             else
                 process_valid_answer(input, wordle, answers_storage)
 
+                display_results(answers_storage)
+
                 if is_game_won?(answers_storage.answers[-1])
                     game_ending = true
-                    game_over_you_won(wordle)
+                    game_over_you_won(wordle)                
                 elsif answers_storage.answers.length == answers_storage.limit
                     game_ending = true
                     game_over_you_lost(wordle)
@@ -118,6 +124,8 @@ def play(wordle, json_results, answers_storage)
 
 end
 
+# require 'colorize'
+# puts String.color_samples
 play(wordle, json_results, answers_storage)
 
 
