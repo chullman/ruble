@@ -1,18 +1,25 @@
 using ColorizeStringPatches
 
+require 'tty-table'
+
 def display_results(answers_storage)
 
     answers_storage.answers.each do |answer_hash|
+        table = TTY::Table.new
+        colorized_answer = []
         for n in 1..5
             if answer_hash[n][1] == :green
-                print "#{answer_hash[n][0].to_s.upcase.color(:light_white, :light_green)} "
+                colorized_answer << "  ".color(:default, :light_green) + answer_hash[n][0].to_s.upcase.color(:black, :light_green) + "  ".color(:default, :light_green)
             elsif answer_hash[n][1] == :orange
-                print "#{answer_hash[n][0].to_s.upcase.color(:light_white, :yellow)} "
+                colorized_answer << "  ".color(:default, :yellow) + answer_hash[n][0].to_s.upcase.color(:light_white, :yellow) + "  ".color(:default, :yellow)
             elsif answer_hash[n][1] == :grey
-                print "#{answer_hash[n][0].to_s.upcase.color(:light_white, :light_black)} "
+                colorized_answer << "  ".color(:default, :light_black) + answer_hash[n][0].to_s.upcase.color(:light_white, :light_black) + "  ".color(:default, :light_black)
             end
         end
-        puts "\n\n"
+        table << colorized_answer
+        puts table.render(:unicode, padding: [1,1,1,1])
+        
     end
+
 
 end
