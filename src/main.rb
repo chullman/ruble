@@ -62,7 +62,7 @@ end
 def process_valid_answer(input, wordle, answers_storage)
     answer_processor = AnswerProcessor.new(input, wordle)
 
-    # check_for_greens must be called before calling check_for_oranges for the AnswerProcessor logic to work
+    # check_for_greens method must be called before calling check_for_oranges method for the AnswerProcessor logic to work
     answer_processor.check_for_greens
     answer_processor.check_for_oranges
 
