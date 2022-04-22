@@ -14,6 +14,7 @@ using ColorizeStringPatches
 require_relative './feature_three/display_results'
 require_relative './feature_three/try_generate_pdf'
 require_relative './feature_three/display_instructions'
+require_relative './feature_three/is_help_argument_passed'
 
 
 require_relative './nilobjecterror'
@@ -178,7 +179,11 @@ def game(json_results)
 
 end
 
-game(json_results)
+if is_help_argument_passed?("help", "--help", "-h")
+    display_instructions
+else
+    game(json_results)
+end
 
 
 
