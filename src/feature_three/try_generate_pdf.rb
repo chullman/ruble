@@ -58,7 +58,7 @@ def try_generate_pdf(wordle, answers_storage, file_path)
 
     rescue Errno::EACCES => e
 
-        puts "ERROR"
+        puts "\n"
         puts "ERROR: Permission denied in writing the file #{file_path}"
         puts "Ensure that there is WRITE access on the directory containing #{file_path} - try running: sudo chmod +w /<<directory path>>"
         puts "AND ensure that the file isn't already opened elsewhere"
