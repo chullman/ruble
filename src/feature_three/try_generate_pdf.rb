@@ -1,6 +1,8 @@
 require 'prawn'
 require 'date'
 
+using ColorizeStringPatches
+
 def try_generate_pdf(wordle, answers_storage, file_path)
 
         # 'Prawn' (PDF generation) documentation source: https://prawnpdf.org/manual.pdf (viewed 21/04/2022)
@@ -66,7 +68,9 @@ def try_generate_pdf(wordle, answers_storage, file_path)
         puts "\n"
 
     else
-        puts "Your Ruble results have been written to PDF file: #{file_path}"
+        puts "\n"
+        puts "Your Ruble results have been written to PDF file: #{file_path}".color(:green)
+        puts "\n"
     ensure
         return nil
     end

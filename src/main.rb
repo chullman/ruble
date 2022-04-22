@@ -53,13 +53,18 @@ def get_user_confirmation
 end
 
 def game_over_you_lost(wordle)
-    puts "GAME OVER YOU LOST"
+    puts "\n"
+    puts "Sorry, Game Over."
+    puts "\n"
     puts "The Wordle was: #{wordle.to_s.upcase.color(:green)}"
 end
 
 def game_over_you_won(wordle, score, limit)
-    puts "YOU WON!! :)".color(:green)
-    puts "Your score is: #{score.to_s}/#{limit.to_s}".color(:green)
+    puts "\n"
+    puts "Congratulations! YOU WON! :)".color(:green)
+    puts "\n"
+    puts "Your score is: #{score.to_s}/#{limit.to_s} attempts".color(:green)
+    puts "\n"
     puts "The Wordle was: #{wordle.to_s.upcase.color(:green)}"
 end
 
@@ -81,21 +86,23 @@ def play(wordle, json_results, answers_storage)
 
     game_ending = false
 
+    puts "Please enter your 5-letter word guess:".color(:green)
+    puts "\n"
+
     until game_ending
 
         input = get_user_answer(answers_storage.answers.length+1)
 
         if is_giving_up?(input)
-            puts "Are you sure you want to give up? - Enter: (y)es / (n)o"
+            puts "Are you sure you want to give up? - Enter: (y)es / (n)o".color(:light_red)
             input = get_user_confirmation
             if confirmed?(input)
                 game_ending = true
                 game_over_you_lost(wordle)
-                display_results(answers_storage)
             end
         else
             if !(is_valid_input?(input, 5, json_results))
-                puts "Sorry, that is not a valid 5 letter word, please try again:"
+                puts "Sorry, that is not a recognised 5-letter word, please try again:"
             else
                 process_valid_answer(input, wordle, answers_storage)
 
@@ -111,6 +118,8 @@ def play(wordle, json_results, answers_storage)
             end
             
         end
+
+        puts "\n"
 
     end
 
@@ -142,12 +151,13 @@ def game(json_results)
     case title_menu_selection
 
     when 1
-
-        puts "(If at any point you would like to give up? Enter 'give up' or 'quit' or 'exit', without the quotes.)"
+        puts "\n"
+        puts "(If at any point you would like to give up? Enter 'give up' or 'quit' or 'exit', without the quotes.)".color(:black, :light_yellow)
+        puts "\n"
 
         wordle = fetch_random_wordle(json_results)
 
-        puts "The wordle is: #{wordle}"
+        puts "****DELETE ME**** the wordle is: #{wordle}"
 
         answers_storage = AnswersStorage.new(6)
 
@@ -161,7 +171,8 @@ def game(json_results)
             end
         end
 
-        puts "THANK YOU FOR PLAYING RUBLE!"
+        puts "Thank you for playing Ruble!"
+        puts "\n"
 
         puts "Would you like to play again? - Enter: (y)es / (n)o"
         input = get_user_confirmation
