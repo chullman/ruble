@@ -20,6 +20,7 @@ require_relative './feature_three/is_help_argument_passed'
 require_relative './nilobjecterror'
 
 require 'tty-prompt'
+require 'artii'
 
 file_handler = FileHandler.new
 
@@ -119,14 +120,21 @@ end
 
 def game(json_results)
 
-    puts "- A Ruby Wordle game replica by Christopher Hullman"
+    title = Artii::Base.new
+    title = title.asciify("R u b l e")
+
+    puts title
+    puts "Welcome to Ruble!".color(:green)
+    puts "\n"
+    puts "- A Ruby-based, Wordle game replica by Christopher Hullman".color(:green)
+    puts "\n"
     
 
     title_prompt = TTY::Prompt.new
 
     title_menu_choices = [
         {name: "Play Game", value: 1},
-        {name: "Read How to Play", value: 2}
+        {name: "Read 'How to Play'", value: 2}
     ]
 
     title_menu_selection = title_prompt.select("What would you like to do?", title_menu_choices)
