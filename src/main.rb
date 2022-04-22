@@ -13,9 +13,12 @@ using ColorizeStringPatches
 
 require_relative './feature_three/display_results'
 require_relative './feature_three/try_generate_pdf'
+require_relative './feature_three/display_instructions'
 
 
 require_relative './nilobjecterror'
+
+require 'tty-prompt'
 
 file_handler = FileHandler.new
 
@@ -116,34 +119,59 @@ end
 def game(json_results)
 
     puts "- A Ruby Wordle game replica by Christopher Hullman"
-    puts "If at any point you would like to give up? Enter 'give up' or 'quit' or 'exit' (without the quotes)."
+    
 
-    wordle = fetch_random_wordle(json_results)
+    title_prompt = TTY::Prompt.new
 
-    puts "The wordle is: #{wordle}"
+    title_menu_choices = [
+        {name: "Play Game", value: 1},
+        {name: "Read How to Play", value: 2}
+    ]
 
-    answers_storage = AnswersStorage.new(6)
+    title_menu_selection = title_prompt.select("What would you like to do?", title_menu_choices)
 
-    play(wordle, json_results, answers_storage)
+    case title_menu_selection
 
-    if !(answers_storage.answers.empty?)
-        puts "Would you like to save your game result to a PDF file? - Enter: (y)es / (n)o"
+    when 1
+
+        puts "(If at any point you would like to give up? Enter 'give up' or 'quit' or 'exit', without the quotes.)"
+
+        wordle = fetch_random_wordle(json_results)
+
+        puts "The wordle is: #{wordle}"
+
+        answers_storage = AnswersStorage.new(6)
+
+        play(wordle, json_results, answers_storage)
+
+        if !(answers_storage.answers.empty?)
+            puts "Would you like to save your game result to a PDF file? - Enter: (y)es / (n)o"
+            input = get_user_confirmation
+            if confirmed?(input)
+                try_generate_pdf(wordle, answers_storage, "my_ruble_results.pdf") 
+            end
+        end
+
+        puts "THANK YOU FOR PLAYING RUBLE!"
+
+        puts "Would you like to play again? - Enter: (y)es / (n)o"
         input = get_user_confirmation
         if confirmed?(input)
-            try_generate_pdf(wordle, answers_storage, "my_ruble_results.pdf") 
+            game(json_results)
+            # I always return from the method immediately after using recursion to prevent any further unexpected code execution
+            return nil
+        else
+            puts "Exiting..."
         end
-    end
-
-    puts "THANK YOU FOR PLAYING RUBLE!"
-
-    puts "Would you like to play again? - Enter: (y)es / (n)o"
-    input = get_user_confirmation
-    if confirmed?(input)
+    
+    when 2
+        display_instructions
+        puts "\n"
+        print "Press any key to continue..."
+        gets.chomp
+        puts "\n"
         game(json_results)
-        # I always return from the method immediately after using recursion to prevent any further unexpected code execution
         return nil
-    else
-        puts "Exiting..."
     end
 
     return nil
