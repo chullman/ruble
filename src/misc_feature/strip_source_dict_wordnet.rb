@@ -1,5 +1,16 @@
-# LICENSE INFO FOR WORDNET - BELOW:
-# Copied from the WordNet 2.1 for Windows software.
+# The main 'Misc feature' file that will take an ENTIRE FREE DICTIONARY source file of thousands of words and definitions
+# and strip it down to only valid 5-letter words
+
+# SORRY, the code below isn't very DRY or well commented, as it's only ever executed once and should never need to be executed again
+# See Trello card https://trello.com/c/Lx7wbJz7 (viewed 24/04/2022) for information about this feature
+
+# Just to assure you, the marker of my terminal assignment, that the dictionary I sourced is free to source, extract and modify,
+# I've copied and pasted their below LICENSE disclaimer from the WordNet 2.1 software, below...
+
+# *******************************
+
+# NOTE ABOUT THE LICENSE INFO FOR WORDNET - BELOW:
+# Copied and pasted from the WordNet 2.1 for Windows software.
 # Also referenced here: https://wordnet.princeton.edu/license-and-commercial-use (last viewed 14/04/2022)
 
     # WordNet Release 2.1
@@ -34,6 +45,7 @@
     # any associated documentation shall at all times remain with  
     # Princeton University and LICENSEE agrees to preserve same.  
 
+# *******************************
 
 require 'net/http'
 require 'json'

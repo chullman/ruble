@@ -2,6 +2,7 @@ using ColorizeStringPatches
 
 require 'tty-table'
 
+# Display 'How To Play' instructions for the user
 def display_instructions
     puts "\n"
     puts "HOW TO PLAY:"

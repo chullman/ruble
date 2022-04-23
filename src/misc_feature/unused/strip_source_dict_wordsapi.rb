@@ -1,3 +1,10 @@
+# ****************************************************************
+# PLEASE IGNORE THIS FILE
+# ****************************************************************
+# I wrote this code as a possible alternative for reading and extracting words from an external source dictionary
+# It is not used
+
+
 # https://rapidapi.com/dpventures/api/wordsapi/
 
 require 'uri'

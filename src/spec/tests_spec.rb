@@ -1,3 +1,6 @@
+# RSPEC tests
+# Currently two test cases and two tests for each test case
+
 require_relative '../feature_one/filehandler'
 require_relative '../feature_two/answerprocessor'
 

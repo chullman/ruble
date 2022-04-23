@@ -1,3 +1,8 @@
+# ****************************************************************
+# PLEASE IGNORE THIS FILE
+# ****************************************************************
+# I wrote this code as a possible alternative for reading and extracting words from an external source dictionary
+
 require 'net/http'
 require 'json'
 

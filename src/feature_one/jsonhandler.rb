@@ -4,6 +4,7 @@ class JSONHandler
     def initialize
     end
 
+    # With our valid string returned from 'filehandler.rb' try to parse it as JSON and return it all as as an array
     def try_parse_json(json_string)
         begin
             json_results = JSON.parse(json_string)
@@ -14,6 +15,7 @@ class JSONHandler
             puts "\n"
             return nil
         else
+            # This block will be raised if the file only contains the string "[]" or "{}"
             if json_results.empty?
                 puts "\n"
                 puts "ERROR: The JSON syntax is valid, but it is empty of content"

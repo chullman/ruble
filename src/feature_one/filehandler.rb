@@ -22,6 +22,7 @@ class FileHandler
         try_file_close(file)
         return nil
   
+      # Handle if there is no read access on the system to the file
       rescue Errno::EACCES => e
   
         puts "\n"
@@ -35,6 +36,7 @@ class FileHandler
       end
     end
   
+    # With the successfully opened file object, attempt to read its entire contents and return it as a string (if it is not empty)
     def try_file_read(file)
   
       file_contents = file.read

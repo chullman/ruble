@@ -1,3 +1,5 @@
+# The main container that will hold all (up to 6) word results generated from './feature_two/answerprocessor.rb'
+
 class AnswersStorage
 
     attr_reader :answers, :limit
