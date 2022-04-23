@@ -11,12 +11,14 @@ class FileHandler
   
         return file
   
+      # Handle if the file cannot be found at all
       rescue Errno::ENOENT => e
   
         puts "\n"
         puts "ERROR: No such file \"#{@file_path}\" found"
         puts "ERROR @: #{e.backtrace[1]}"
         puts "\n"
+        # For good memory practice, attempt to close the file if for some reason it still gets opened
         try_file_close(file)
         return nil
   
