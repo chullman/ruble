@@ -157,8 +157,6 @@ def game(json_results)
 
         wordle = fetch_random_wordle(json_results)
 
-        puts "****DELETE ME**** the wordle is: #{wordle}"
-
         answers_storage = AnswersStorage.new(6)
 
         play(wordle, json_results, answers_storage)
