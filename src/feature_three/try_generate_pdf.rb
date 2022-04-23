@@ -69,7 +69,7 @@ def try_generate_pdf(wordle, answers_storage, file_path)
 
     else
         puts "\n"
-        puts "Your Ruble results have been written to PDF file: #{file_path}".color(:green)
+        puts "Your Ruble results have been written to PDF file: '#{file_path}' in the 'src/' directory".color(:green)
         puts "\n"
     ensure
         return nil
