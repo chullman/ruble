@@ -19,11 +19,11 @@ def display_instructions
     puts "\n"
     display_results(answers_storage)
     puts "\n"
-    puts "The letters, 'H' and both 'L's are both IN the chosen Wordle AND in the correct position in the Wordle, so they are marked #{" GREEN ".color(:black, :light_green)} #{"".color(:deafult, :default)}"
+    puts "The letters, 'H' and both 'L's are both IN the chosen Wordle AND in the correct position in the Wordle, so they are marked #{" GREEN ".color(:black, :light_green)}#{".".color(:deafult, :default)}"
     puts "\n"
-    puts "The letter, 'O' is IN the chosen Wordle BUT NOT in the correct position in the Wordle, so it is marked #{" ORANGE ".color(:black, :yellow)} #{"".color(:deafult, :default)}"
+    puts "The letter, 'O' is IN the chosen Wordle BUT NOT in the correct position in the Wordle, so it is marked #{" ORANGE ".color(:black, :yellow)}#{".".color(:deafult, :default)}"
     puts "\n"
-    puts "The letter, 'Y' is NOT in the chosen Wordle at all, so it is marked #{" GREY ".color(:light_white, :light_black)} #{"".color(:deafult, :default)}"
+    puts "The letter, 'Y' is NOT in the chosen Wordle at all, so it is marked #{" GREY ".color(:light_white, :light_black)}#{".".color(:deafult, :default)}"
     puts "\n"
 
     return nil
