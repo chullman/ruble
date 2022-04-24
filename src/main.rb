@@ -181,7 +181,7 @@ def game(json_results)
         {name: "Read 'How to Play'", value: 2}
     ]
 
-    title_menu_selection = title_prompt.select("What would you like to do?", title_menu_choices)
+    title_menu_selection = title_prompt.select("What would you like to do?", title_menu_choices, symbols: { marker: ">" })
 
     case title_menu_selection
 

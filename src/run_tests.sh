@@ -14,4 +14,6 @@ cd "$parent_path"
 # Install gems in Gemfile
 bundle
 
+clear
+
 rspec
