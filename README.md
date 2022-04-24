@@ -57,9 +57,15 @@ You will have 6 attempts to guess a randomly selected, valid 5 letter English wo
 
 ## Software Implementation Plan - Trello
 
-**Trello link:** [https://trello.com/b/V7q9Pmvl](https://trello.com/b/V7q9Pmvl)
+### Trello Link:
 
-**Trello progress screenshots:** Please browse to the `/docs` directory in this master repository.
+**[https://trello.com/b/V7q9Pmvl](https://trello.com/b/V7q9Pmvl)**
+
+![Trello final screenshot](./docs/trello_final.png)
+
+### Trello Progress Screenshots:
+
+Please browse to the `/docs` directory in this master repository.
 
 ## App Features
 
@@ -67,11 +73,19 @@ You will have 6 attempts to guess a randomly selected, valid 5 letter English wo
 
 **Feature #1** See Trello card [https://trello.com/c/zBwQe3Kp](https://trello.com/c/zBwQe3Kp)
 
+![Feature 1 info screenshot](./docs/feature_one_info.png)
+
 **Feature #2** See Trello card [https://trello.com/c/YAlDbozF](https://trello.com/c/YAlDbozF)
+
+![Feature 2 info screenshot](./docs/feature_two_info.png)
 
 **Feature #3** See Trello card [https://trello.com/c/M6S1vNP5](https://trello.com/c/M6S1vNP5)
 
+![Feature 3 info screenshot](./docs/feature_three_info.png)
+
 **Misc. Feature** See Trello card [https://trello.com/c/Lx7wbJz7](https://trello.com/c/Lx7wbJz7)
+
+![Misc feature info screenshot](./docs/feature_misc_info.png)
 
 ## Slide Deck
 
