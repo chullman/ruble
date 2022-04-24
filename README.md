@@ -43,7 +43,7 @@ Ruble is a Ruby developed terminal app replica of the real-world word game calle
 
 #### How To Play Ruble
 
-You will have 6 attempts to guess a randomly selected, valid 5 letter English word, known as the Wordle, by inputting letters 'a' to 'z' to form a valid 5 letter English word as your guess. **Please select `Read 'How To Play'` in the in-game menu selection for more information**
+You will have 6 attempts to guess a randomly selected, valid 5 letter English word, known as the Wordle, by inputting letters 'a' to 'z' to form a valid 5 letter English word as your guess. **Please select `Read 'How To Play'` in the in-game menu selection for more information** or **run `./run_display_help.sh`**
 
 ## Tested System Requirements
 
